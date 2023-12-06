@@ -11,4 +11,4 @@
 - nginx ingress
 - add sidecar: https://docs.digitalocean.com/products/kubernetes/how-to/monitor-advanced/
 - setup cicd
-
+- import LB
