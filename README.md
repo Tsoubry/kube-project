@@ -13,3 +13,18 @@ doctl registry kubernetes-manifest | kubectl apply -f -
 
 kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "registry-z9pxj2-python-example"}]}'
 
+
+
+
+
+## import terraform:
+
+Create inplace resource:
+
+resource "digitalocean_vpc" "example" {}
+
+run: terraform import digitalocean_vpc.example VPC_ID
+
+terraform show > current_state.txt to get the changes
+
+
