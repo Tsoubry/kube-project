@@ -3,6 +3,7 @@ resource "digitalocean_kubernetes_cluster" "ts-cluster" {
   region  = "ams3"
   auto_upgrade = true
   version = data.digitalocean_kubernetes_versions.ts-cluster.latest_version
+  registry_integration = true
 
   node_pool {
     name       = "worker-pool"

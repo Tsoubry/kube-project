@@ -1,0 +1,15 @@
+
+kubectl create deployment hello-world-app --image=registry.digitalocean.com/z9pxj2-python-example/hello-world-app:v0.1.0
+kubectl scale deployment/hello-world-app --replicas=3
+
+Check how it got divided over different nodes:
+kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name --all-namespaces | grep hello-world-app
+
+
+kubectl expose deployment hello-world-app --type=LoadBalancer --port=80 --target-port=80
+
+check LB: 
+doctl compute load-balancer list --format Name,Created,IP,Status
+
+
+
