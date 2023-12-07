@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2023-12-06T17:30:53Z"
+  generation: 2
+  labels:
+    app: hello-world-app
+  name: hello-world-app
+  namespace: default
+  resourceVersion: "22647"
+  uid: d1a263bf-134f-4eee-ad73-08005b458ee5
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: hello-world-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hello-world-app
+    spec:
+      containers:
+      - image: registry.digitalocean.com/z9pxj2-python-example/hello-world-app:v0.1.0
+        imagePullPolicy: IfNotPresent
+        name: hello-world-app
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        env:
+        - name: NAME
+          valueFrom:
+            secretKeyRef:
+              name: hello-world-secret
+              key: NAME
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 3
+  conditions:
+  - lastTransitionTime: "2023-12-06T17:30:53Z"
+    lastUpdateTime: "2023-12-06T17:31:23Z"
+    message: ReplicaSet "hello-world-app-7df7df6cd" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2023-12-06T17:32:35Z"
+    lastUpdateTime: "2023-12-06T17:32:35Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  observedGeneration: 2
+  readyReplicas: 3
+  replicas: 3
+  updatedReplicas: 3
