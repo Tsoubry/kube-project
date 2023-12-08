@@ -14,8 +14,15 @@ doctl registry kubernetes-manifest | kubectl apply -f -
 kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "registry-z9pxj2-python-example"}]}'
 
 
+## Tofu init
 
+!!!
 
+first specify spaces creds (yes with AWS env vars)
+export AWS_ACCESS_KEY_ID="your_digitalocean_spaces_access_key"
+export AWS_SECRET_ACCESS_KEY="your_digitalocean_spaces_secret_key"
+
+tf init
 
 ## import terraform:
 
