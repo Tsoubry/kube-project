@@ -16,6 +16,16 @@ variable "project_name" {
 }
 
 variable "environment" {
-  type = string
+  type    = string
   default = "Development"
+}
+
+variable "do_spaces_client_id" {
+  description = "DigitalOcean spaces id"
+  type        = string
+}
+
+variable "do_spaces_secret_key" {
+  description = "DigitalOcean spaces secret key"
+  type        = string
 }
