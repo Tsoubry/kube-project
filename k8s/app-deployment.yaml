@@ -25,7 +25,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: hello-world-app
     spec:
@@ -33,7 +32,12 @@ spec:
       - image: registry.digitalocean.com/z9pxj2-python-example/hello-world-app:v0.1.0
         imagePullPolicy: IfNotPresent
         name: hello-world-app
-        resources: {}
+        resources: 
+          requests:
+            memory: "150Mi"
+          limits:
+            cpu: "0.25"
+            memory: "250Mi"
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         env:
