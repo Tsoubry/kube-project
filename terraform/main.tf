@@ -10,7 +10,7 @@ terraform {
     endpoint                    = "ams3.digitaloceanspaces.com"
     bucket                      = "tf-state-bucket-ccr9m7"
     key                         = "terraform.tfstate"
-    region                      = "us-east-1"  # This can be a dummy value for DigitalOcean
+    region                      = "us-east-1" # This can be a dummy value for DigitalOcean
     skip_credentials_validation = true
     skip_metadata_api_check     = true
   }

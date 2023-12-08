@@ -9,6 +9,9 @@ resource "digitalocean_kubernetes_cluster" "ts-cluster" {
     name       = "worker-pool"
     size       = "s-1vcpu-2gb"
     node_count = 3
+    tags = [
+      digitalocean_tag.created_with_tf.id
+    ]
   }
 
   maintenance_policy {
