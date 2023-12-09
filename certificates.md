@@ -14,3 +14,14 @@ helm upgrade cert-manager jetstack/cert-manager --version 1.8.0 \
 
 
 Then manually add issuer and networking following get started instructions
+
+
+## Ingress nginx setup
+
+helm install ingress-networking ./ingress-chart --set host=custom-domain.com
+
+### Upgrade
+
+helm upgrade ingress-networking ./ingress-chart --set host=custom-domain.com
+
+
