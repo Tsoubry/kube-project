@@ -22,6 +22,8 @@ first specify spaces creds (yes with AWS env vars)
 export AWS_ACCESS_KEY_ID="your_digitalocean_spaces_access_key"
 export AWS_SECRET_ACCESS_KEY="your_digitalocean_spaces_secret_key"
 
+or just do source tf_backend_setup.sh
+
 tf init
 
 ## import terraform:

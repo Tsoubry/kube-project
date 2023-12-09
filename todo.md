@@ -8,3 +8,5 @@
 - nginx ingress
 - setup cicd
 - Odoo test
+- node pools config: taint and labels
+

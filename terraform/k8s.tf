@@ -24,3 +24,13 @@ resource "digitalocean_kubernetes_cluster" "ts-cluster" {
   ]
 
 }
+
+resource "digitalocean_kubernetes_node_pool" "ts-cluster-additional-nodes" {
+  cluster_id = digitalocean_kubernetes_cluster.ts-cluster.id
+
+  name       = "additional-node-pool"
+  size       = "s-2vcpu-4gb"
+  node_count = 1
+  tags       = [digitalocean_tag.created_with_tf.id]
+
+}
