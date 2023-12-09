@@ -22,27 +22,29 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: hello-world-app
     spec:
       containers:
-      - image: registry.digitalocean.com/z9pxj2-python-example/hello-world-app:v0.1.0
-        imagePullPolicy: IfNotPresent
-        name: hello-world-app
-        resources: 
-          requests:
-            memory: "150Mi"
-          limits:
-            cpu: "0.25"
-            memory: "250Mi"
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        env:
+      - env:
         - name: NAME
           valueFrom:
             secretKeyRef:
-              name: hello-world-secret
               key: NAME
+              name: hello-world-secret
+        image: registry.digitalocean.com/z9pxj2-python-example/hello-world-app:v0.1.0
+        imagePullPolicy: IfNotPresent
+        name: hello-world-app
+        resources:
+          limits:
+            cpu: 250m
+            memory: 250Mi
+          requests:
+            memory: 150Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -51,15 +53,11 @@ spec:
 status:
   availableReplicas: 3
   conditions:
-  - lastTransitionTime: "2023-12-06T17:30:53Z"
-    lastUpdateTime: "2023-12-06T17:31:23Z"
-    message: ReplicaSet "hello-world-app-7df7df6cd" has successfully progressed.
+  - message: ReplicaSet "hello-world-app-7df7df6cd" has successfully progressed.
     reason: NewReplicaSetAvailable
     status: "True"
     type: Progressing
-  - lastTransitionTime: "2023-12-06T17:32:35Z"
-    lastUpdateTime: "2023-12-06T17:32:35Z"
-    message: Deployment has minimum availability.
+  - message: Deployment has minimum availability.
     reason: MinimumReplicasAvailable
     status: "True"
     type: Available
@@ -67,3 +65,4 @@ status:
   readyReplicas: 3
   replicas: 3
   updatedReplicas: 3
+  
