@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spintest
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spintest
+  template:
+    metadata:
+      labels:
+        app: spintest
+    spec:
+      runtimeClassName: wasmtime-spin
+      containers:
+        - name: spintest
+          image: todo
+          command: ["/"]
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 150m
+              memory: 150Mi
+            requests:
+              cpu: 50m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spintest
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: spintest
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-spintest
+  namespace: default
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+    kubernetes.io/ingress.class: nginx
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - todo
+    secretName: letsencrypt-nginx
+  rules:
+    - host: todo
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: spintest
+                port:
+                  number: 80
