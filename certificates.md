@@ -1,27 +1,45 @@
-# Certificates and TLS termination
 
-## installing cert-manager
+---
+# Certificates and TLS Termination
 
-Add with 1 click on DO
+## Installing cert-manager
 
+Add with 1 click on DigitalOcean:
+
+```bash
 helm repo add jetstack https://charts.jetstack.io
 helm show values jetstack/cert-manager --version 1.8.0 > cert-manager/values.yaml
 
-
 helm upgrade cert-manager jetstack/cert-manager --version 1.8.0 \
   --namespace cert-manager \
-  --values cert-manager/values.yaml
+  --values cert-manager/values.yaml \
+  --set installCRDs=true
+```
 
+## Prepare Certificates
 
-Then manually add issuer and networking following get started instructions
+Generate a new RSA private key:
 
+```bash
+openssl genrsa -out letsencrypt-nginx-private-key.pem 2048
+kubectl create secret generic letsencrypt-nginx-private-key --from-file=tls.key=letsencrypt-nginx-private-key.pem --namespace=default
+```
 
-## Ingress nginx setup
+## Ingress nginx Setup
 
-helm install ingress-networking ./ingress-chart --set host=custom-domain.com
+Install Nginx ingress controller with 1 click.
+
+Then apply ingress networking helm chart:
+
+```bash
+helm install ingress-networking ./ingress-chart --set host=custom-domain.com,email=mail@example.com
+```
 
 ### Upgrade
 
-helm upgrade ingress-networking ./ingress-chart --set host=custom-domain.com
+To upgrade, use the following command:
 
-
+```bash
+helm upgrade ingress-networking ./ingress-chart --set host=custom-domain.com,email=mail@example.com
+```
+---

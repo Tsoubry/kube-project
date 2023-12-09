@@ -3,8 +3,14 @@ kind: Ingress
 metadata:
   name: ingress-hello-world
   namespace: default
+  annotations:
+    cert-manager.io/issuer: letsencrypt-nginx
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - {{ .Values.host }}
+    secretName: letsencrypt-nginx
   rules:
     - host: {{ .Values.host }}
       http:
