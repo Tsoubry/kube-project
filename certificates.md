@@ -12,8 +12,7 @@ helm show values jetstack/cert-manager --version 1.8.0 > cert-manager/values.yam
 
 helm upgrade cert-manager jetstack/cert-manager --version 1.8.0 \
   --namespace cert-manager \
-  --values cert-manager/values.yaml \
-  --set installCRDs=true
+  --values cert-manager/values.yaml
 ```
 
 ## Prepare Certificates
