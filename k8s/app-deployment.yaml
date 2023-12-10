@@ -65,4 +65,14 @@ status:
   readyReplicas: 3
   replicas: 3
   updatedReplicas: 3
-  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-app
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: hello-world-app
