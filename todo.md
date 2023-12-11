@@ -1,7 +1,5 @@
 # TODO
 
-- fix the loadbalancer so it can be shared
-- setup wireguard
 - test metrics server api
 - link keda with metrics api
 

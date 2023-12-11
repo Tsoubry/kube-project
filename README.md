@@ -80,5 +80,6 @@ helm repo add wireguard https://bryopsida.github.io/wireguard-chart
 helm repo update
 helm install wg-vpn wireguard/wireguard -f wireguard/values.yaml  
 
+But doesn't work in DO because of problems with setting up the load balancer
 
 ---
