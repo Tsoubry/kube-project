@@ -1,0 +1,15 @@
+autoscaling:
+  enabled: false
+  minReplicas: 1
+replicaCount: 1
+image:
+  tag: "20231207-bcfa2df"
+service:
+  type: "NodePort"
+wireguard:
+  allowWan: false
+  clients:
+  - AllowedIPs: 172.32.32.2/32
+    PublicKey: XzL1g6o+F7Zb54X2rF3946pE00wq+DKKb742hVew2VE=
+  serverAddress: 172.32.32.1/24
+  serverCidr: 172.32.32.0/24

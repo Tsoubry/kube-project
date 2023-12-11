@@ -1,5 +1,12 @@
 # TODO
 
+- fix the loadbalancer so it can be shared
+- setup wireguard
+- test metrics server api
+- link keda with metrics api
+
+
+
 - Configure Keda with Prometheus
 - add karpenter
 - node pools config: taint and labels

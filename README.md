@@ -71,4 +71,14 @@ To import an existing resource in the cloud into the terraform state:
 
 5. Adapt the resource with the changes in the state and double check that everything works using tf plan.
 
+
+## VPN into the cluster
+
+Using Wireguard vpn: https://github.com/bryopsida/wireguard-chart
+
+helm repo add wireguard https://bryopsida.github.io/wireguard-chart 
+helm repo update
+helm install wg-vpn wireguard/wireguard -f wireguard/values.yaml  
+
+
 ---

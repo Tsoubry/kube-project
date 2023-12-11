@@ -19,6 +19,12 @@ Create the necessary resources with:
 kubectl create -f kube-state-metrics/examples/standard/
 ```
 
+# Add metrics server
+
+Kubernetes metrics server: https://github.com/kubernetes-sigs/metrics-server
+
+
+
 ## Linkerd 
 
 ### Add Service Mesh
