@@ -34,7 +34,7 @@ spec:
             secretKeyRef:
               key: NAME
               name: hello-world-secret
-        image: registry.digitalocean.com/z9pxj2-python-example/hello-world-app:v0.1.0
+        image: registry.digitalocean.com/z9pxj2-python-example/hello-world-app:v0.2.0
         imagePullPolicy: IfNotPresent
         name: hello-world-app
         resources:
