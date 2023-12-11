@@ -5,7 +5,7 @@ replicaCount: 1
 image:
   tag: "20231207-bcfa2df"
 service:
-  type: "NodePort"
+  enabled: false
 wireguard:
   allowWan: false
   clients:
