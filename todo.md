@@ -5,7 +5,6 @@
 
 
 
-- Configure Keda with Prometheus
 - add karpenter
 - node pools config: taint and labels
 - configure argo cd
